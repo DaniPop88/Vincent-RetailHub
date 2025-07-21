@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Summary | Vincent Borje Retail Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Review your order, provide your contact details, and confirm your purchase at Vincent Borje Retail Hub. Responsive, secure, and customer-focused checkout experience.">
+  <link rel="icon" href="image/FAVICON.png" type="image/png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,700&display=swap">
+  <style>
+    :root {
+      --primary-blue: #77a2c6;
+      --accent-pink: #e251ad;
+      --header-blue: #5e97bb;
+      --bg-light: #f8fafd;
+      --bg-white: #fff;
+      --border-radius: 10px;
+      --box-shadow: 0 2px 12px rgba(120,160,190,0.09);
+      --success-green: #3cc77a;
+      --danger-red: #e251ad;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+      background: var(--bg-light);
+      color: #222;
+      min-height: 100vh;
+      scroll-behavior: smooth;
+    }
+    header {
+      background: var(--bg-white);
+      box-shadow: 0 2px 14px rgba(120,160,190,0.11);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.7rem 0 0.2rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      width: 100%;
+    }
+    .logo-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2rem;
+      margin-bottom: 0.3rem;
+    }
+    .logo-wrap img {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 1px 10px rgba(120,160,190,0.08);
+      margin-bottom: 0.2rem;
+    }
+    .logo-title {
+      font-family: 'Montserrat', serif;
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--header-blue);
+      text-align: center;
+    }
+    .logo-sub {
+      font-family: 'Montserrat', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-pink);
+      text-align: center;
+      letter-spacing: 0.07em;
+    }
+    main {
+      width: 100%;
+      max-width: 500px;
+      margin: 1rem auto 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .summary-box {
+      background: var(--bg-white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 2rem 1.3rem 1.5rem 1.3rem;
+      margin-bottom: 1.2rem;
+    }
+    .summary-title {
+      color: var(--header-blue);
+      font-size: 1.45rem;
+      font-weight: 700;
+      font-family: 'Montserrat', serif;
+      margin-bottom: 0.3rem;
+      text-align: center;
+    }
+    .summary-subtitle {
+      color: #444;
+      font-size: 1.07rem;
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+    .order-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.2rem 0;
+      font-size: 1.05rem;
+      border-top: 1px solid #e5e5ea;
+      border-bottom: 1px solid #e5e5ea;
+    }
+    .order-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.45rem 0;
+      font-family: 'Roboto', sans-serif;
+      color: #222;
+    }
+    .order-list li:not(:last-child) {
+      border-bottom: 1px dashed #e5e5ea;
+    }
+    .order-total {
+      font-weight: 700;
+      color: var(--accent-pink);
+      text-align: right;
+      font-size: 1.13rem;
+      margin-top: 0.7rem;
+    }
+    .checkout-form {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+    .form-label {
+      font-size: 1.07rem;
+      color: var(--header-blue);
+      margin-bottom: 0.25rem;
+      font-weight: 700;
+      font-family: 'Montserrat', serif;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: 7px;
+      border: 1px solid #dde4e9;
+      font-size: 1.05rem;
+      font-family: 'Roboto', sans-serif;
+      margin-bottom: 0.2rem;
+      box-sizing: border-box;
+      background: #f8fafd;
+      transition: border 0.15s;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary-blue);
+      background: #fff;
+    }
+    .form-row {
+      display: flex;
+      gap: 1rem;
+    }
+    .form-row > * {
+      flex: 1 1 0;
+    }
+    .checkout-btn {
+      background: var(--accent-pink);
+      color: #fff;
+      border: none;
+      padding: 0.7rem 0;
+      border-radius: 7px;
+      font-weight: 700;
+      font-size: 1.17rem;
+      cursor: pointer;
+      font-family: 'Montserrat', serif;
+      margin-top: 1.1rem;
+      box-shadow: 0 2px 10px rgba(226,81,173,0.08);
+      transition: background 0.18s;
+      width: 100%;
+    }
+    .checkout-btn:hover {
+      background: var(--header-blue);
+      color: #fff;
+    }
+    .confirmation-box {
+      background: #f8fffa;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--success-green);
+      box-shadow: 0 2px 18px rgba(60,199,122,0.07);
+      padding: 2rem 1.3rem;
+      margin-bottom: 2rem;
+      margin-top: 2rem;
+      text-align: center;
+      animation: fadeInConfirm 0.19s;
+    }
+    @keyframes fadeInConfirm {
+      from { opacity: 0; transform: translateY(25px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .confirmation-title {
+      font-size: 1.35rem;
+      color: var(--success-green);
+      font-weight: 700;
+      font-family: 'Montserrat', serif;
+      margin-bottom: 0.7rem;
+    }
+    .confirmation-details {
+      font-size: 1.09rem;
+      color: #222;
+      margin-bottom: 1.2rem;
+      font-family: 'Roboto', sans-serif;
+    }
+    .payment-alert {
+      background: #fff6fc;
+      border-left: 5px solid var(--danger-red);
+      border-radius: 6px;
+      padding: 1.1rem 1rem;
+      margin: 1.5rem 0;
+      font-size: 1.06rem;
+      color: var(--danger-red);
+      font-family: 'Roboto', sans-serif;
+    }
+    /* Footer */
+    footer {
+      background: var(--header-blue);
+      color: #fff;
+      text-align: center;
+      padding: 1.2rem 0 0.6rem 0;
+      margin-top: 2rem;
+      font-size: 1rem;
+      font-family: 'Roboto', sans-serif;
+    }
+    .footer-links {
+      margin-bottom: 0.5rem;
+    }
+    .footer-links a {
+      color: #fff;
+      text-decoration: underline;
+      margin: 0 0.6rem;
+      font-size: 1rem;
+      font-family: 'Montserrat', serif;
+      font-weight: 700;
+    }
+    .footer-links a:hover {
+      color: var(--accent-pink);
+    }
+    .footer-info {
+      font-size: 0.96rem;
+      margin-top: 0.5rem;
+      opacity: 0.86;
+    }
+    /* Responsive */
+    @media (max-width: 650px) {
+      main {
+        max-width: 98vw;
+        padding: 0 0.3rem;
+      }
+      .summary-box, .confirmation-box {
+        padding: 1.2rem 0.5rem;
+      }
+    }
+    @media (max-width: 450px) {
+      .summary-title {
+        font-size: 1.13rem;
+      }
+      .confirmation-title {
+        font-size: 1.1rem;
+      }
+      .logo-wrap img {
+        width: 60px;
+        height: 60px;
+      }
+      .logo-title, .logo-sub {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-wrap">
+      <img src="image/LOGO.png" alt="Vincent Borje Retail Hub Logo" />
+      <div class="logo-title">Vincent Borje Retail Hub</div>
+      <div class="logo-sub">Order Summary</div>
+    </div>
+  </header>
+  <main>
+    <div class="summary-box" id="orderSummaryBox">
+      <div class="summary-title">Order Review & Customer Information</div>
+      <div class="summary-subtitle">
+        Please check your order carefully and fill in your contact details below. If you have any special requests or notes, let us know so we can serve you better!
+      </div>
+      <ul class="order-list" id="orderList">
+        <li><span>Laundry Detergent x2</span><span>₱170.00</span></li>
+        <li><span>Plastic Storage Box x1</span><span>₱199.00</span></li>
+        <li><span>Notebook (Spiral) x3</span><span>₱98.97</span></li>
+        <!-- Product items should be dynamically generated in production -->
+      </ul>
+      <div class="order-total" id="orderTotal">Total: ₱467.97</div>
+      <form class="checkout-form" id="checkoutForm" autocomplete="off">
+        <div>
+          <label for="customerName" class="form-label">Full Name</label>
+          <input type="text" id="customerName" name="customerName" class="form-input" required maxlength="100" placeholder="Your Name">
+        </div>
+        <div class="form-row">
+          <div>
+            <label for="customerPhone" class="form-label">Mobile Number</label>
+            <input type="tel" id="customerPhone" name="customerPhone" class="form-input" required maxlength="20" pattern="^(09|\+639)\d{9}$" placeholder="e.g. 09XXXXXXXXX">
+          </div>
+          <div>
+            <label for="customerEmail" class="form-label">Email Address</label>
+            <input type="email" id="customerEmail" name="customerEmail" class="form-input" required maxlength="100" placeholder="you@email.com">
+          </div>
+        </div>
+        <div>
+          <label for="customerAddress" class="form-label">Delivery Address</label>
+          <textarea id="customerAddress" name="customerAddress" class="form-textarea" required maxlength="200" placeholder="Complete address for delivery"></textarea>
+        </div>
+        <div>
+          <label for="paymentMethod" class="form-label">Preferred Payment Method</label>
+          <select id="paymentMethod" name="paymentMethod" class="form-select" required>
+            <option value="">-- Select Payment Method --</option>
+            <option value="Cash">Cash</option>
+            <option value="GCash">GCash</option>
+            <option value="Bank Transfer">Bank Transfer (BPI, Metrobank)</option>
+            <option value="Maya">Maya (QR Payment)</option>
+          </select>
+        </div>
+        <div>
+          <label for="customerNotes" class="form-label">Additional Notes</label>
+          <textarea id="customerNotes" name="customerNotes" class="form-textarea" maxlength="200" placeholder="Any requests or instructions? (optional)"></textarea>
+        </div>
+        <button type="submit" class="checkout-btn" id="submitOrderBtn">Submit Order</button>
+      </form>
+    </div>
+    <div class="confirmation-box" id="confirmationBox" style="display:none;">
+      <div class="confirmation-title">Thank You! Your Order Has Been Sent</div>
+      <div class="confirmation-details">
+        We appreciate your purchase. A member of our team will contact you soon to confirm your order details—including product colors, availability, and any other specifics.<br><br>
+        Please check your messages and respond promptly to verify these details. Once confirmed, we'll send you a payment link based on your selected payment method.<br><br>
+        <strong>Note:</strong> Payment must be completed within <strong>24 hours</strong> to secure your order. Orders not paid within this period will be cancelled automatically.
+      </div>
+      <div class="payment-alert">
+        For assistance or questions, contact us at <a href="mailto:contact@vincentborjeretail.com" style="color:var(--danger-red);text-decoration:underline;">contact@vincentborjeretail.com</a> or call <strong>+63 945 824 7103</strong>.<br>
+        We’re here to help!
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="footer-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="refund-policy.html">Refund Policy</a>
+    </div>
+    <div class="footer-info">
+      &copy; 2022–2025 Vincent Borje Retail Hub, #21 Kapitan Santos St., Brgy. Balong Bato, San Juan City, NCR, Philippines.<br>
+      All Rights Reserved. | DTI Registered | Business Permit Approved
+    </div>
+  </footer>
+  <script>
+    // Responsive sticky header
+    (function(){
+      const header = document.querySelector('header');
+      function onScroll() {
+        if(window.scrollY > 0) {
+          header.classList.add('sticky');
+        } else {
+          header.classList.remove('sticky');
+        }
+      }
+      window.addEventListener('scroll', onScroll);
+    })();
+
+    // Checkout form submission and confirmation
+    document.getElementById('checkoutForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      document.getElementById('orderSummaryBox').style.display = 'none';
+      document.getElementById('confirmationBox').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Optionally, update order list and total dynamically from localStorage or passed data
+    // For demonstration purposes, the items are static in this example.
+  </script>
+</body>
+</html>
